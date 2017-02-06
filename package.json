@@ -1,0 +1,29 @@
+{
+  "name": "moggy",
+  "version": "0.1.0",
+  "description": "Presenting a foolish implementation of immutability that aspires to ignore the most cherished taboo of not modifying prototypes for unspecified reasons.",
+  "main": "src/moggy.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wildhoney/Transmogrify.git"
+  },
+  "keywords": [
+    "immutable",
+    "mutable",
+    "mutability",
+    "immutability",
+    "functional",
+    "moggies",
+    "moggy",
+    "mog"
+  ],
+  "author": "Adam Timberlake <adam.timberlake@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Wildhoney/Transmogrify/issues"
+  },
+  "homepage": "https://github.com/Wildhoney/Transmogrify#readme"
+}
