@@ -1,4 +1,4 @@
-![Transmogrify](media/logo.png)
+<img src="media/logo.png" alt="Transmogrify" width="250" />
 
 > Presenting a foolish implementation of immutability that aspires to ignore the most cherished taboo of not modifying prototypes for unspecified reasons.
 
