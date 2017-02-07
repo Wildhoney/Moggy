@@ -35,3 +35,11 @@ test('Array.prototype.pop', t => {
     t.deepEqual(a, [1, 2, 3, 4, 5]);
     revert();
 });
+
+test('Array.prototype.shift', t => {
+    const revert = apply(Array.prototype);
+    const a = [1, 2, 3, 4, 5];
+    t.deepEqual(a.shift(), [[2, 3, 4, 5], 1]);
+    t.deepEqual(a, [1, 2, 3, 4, 5]);
+    revert();
+});
