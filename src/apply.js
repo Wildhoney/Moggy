@@ -22,9 +22,9 @@ export default function apply(proto) {
         } catch (e) {
 
             // However if the function did in fact attempt to mutate the frozen object, then we'll
-            // handle that gracefully.
-            copy[name].apply(extensibleContext, args);
-            return Object.freeze(extensibleContext);
+            // handle that gracefully, and return a tuple of the result and its side-effect.
+            const result = copy[name].apply(extensibleContext, args);
+            return Object.freeze([extensibleContext, result]);
 
         }
 
