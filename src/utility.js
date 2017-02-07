@@ -39,7 +39,7 @@ export function clone(proto) {
  */
 export function patch(proto, name, fn) {
 
-    const supported = ['push', 'slice', 'splice'];
+    const supported = ['push', 'slice', 'splice', 'pop'];
 
     if (!supported.includes(name)) {
         return;

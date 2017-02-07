@@ -27,3 +27,11 @@ test('Array.prototype.splice', t => {
     t.deepEqual(a, [1, 2, 3, 4, 5]);
     revert();
 });
+
+test('Array.prototype.pop', t => {
+    const revert = apply(Array.prototype);
+    const a = [1, 2, 3, 4, 5];
+    t.deepEqual(a.pop(), [[1, 2, 3, 4], 5]);
+    t.deepEqual(a, [1, 2, 3, 4, 5]);
+    revert();
+});
