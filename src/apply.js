@@ -1,4 +1,4 @@
-import { each, patch, isFunction } from './utility';
+import { each, patch, clone, isFunction } from './utility';
 
 /**
  * @method apply
@@ -7,16 +7,33 @@ import { each, patch, isFunction } from './utility';
  */
 export default function apply(proto) {
 
-    const copy = Object.getOwnPropertyNames(proto).reduce((xs, f) => {
-        return { ...xs, [f]: proto[f] };
-    }, {});
+    const copy = clone(proto);
 
-    each(proto, fn => isFunction(proto[fn]) && patch(proto, fn));
+    each(proto, name => isFunction(proto[name]) && patch(proto, name, (context, ...args) => {
+
+        // Make a copy of the object before making it immutable.
+        const extensibleContext = [...context];
+
+        try {
+
+            // Attempt to apply a function which we'll assume doesn't have any side-effects.
+            return copy[name].apply(Object.freeze(context), args);
+
+        } catch (e) {
+
+            // However if the function did in fact attempt to mutate the frozen object, then we'll
+            // handle that gracefully.
+            copy[name].apply(extensibleContext, args);
+            return Object.freeze(extensibleContext);
+
+        }
+
+    }));
 
     return () => {
 
-        each(copy, fn => {
-            proto[fn] = copy[fn];
+        each(copy, name => {
+            proto[name] = copy[name];
         });
 
     };

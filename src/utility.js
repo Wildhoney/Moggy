@@ -1,11 +1,11 @@
 /**
  * @method each
  * @param {Object} proto
- * @param {Function} fn
+ * @param {Function} name
  * @return {void}
  */
-export function each(proto, fn) {
-    Object.getOwnPropertyNames(proto).forEach(fn);
+export function each(proto, name) {
+    Object.getOwnPropertyNames(proto).forEach(name);
 }
 
 /**
@@ -18,21 +18,36 @@ export function isFunction(x) {
 }
 
 /**
+ * @method clone
+ * @param {Object} proto
+ * @param {String} name
+ * @return {Object}
+ */
+export function clone(proto, name) {
+
+    return Object.getOwnPropertyNames(proto).reduce((xs, name) => {
+        return { ...xs, [name]: proto[name] };
+    }, {});
+
+}
+
+/**
  * @method patch
  * @param {Object} proto
- * @param {String} fn
+ * @param {String} name
+ * @param {Function} fn
  * @return {*}
  */
-export function patch(proto, fn) {
+export function patch(proto, name, fn) {
 
     const supported = ['push'];
 
-    if (!supported.includes(fn)) {
+    if (!supported.includes(name)) {
         return;
     }
 
-    proto[fn] = function(a) {
-        return [...this, a];
+    proto[name] = function(...args) {
+        return fn([...this], ...args);
     };
 
 }
