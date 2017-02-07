@@ -20,10 +20,9 @@ export function isFunction(x) {
 /**
  * @method clone
  * @param {Object} proto
- * @param {String} name
  * @return {Object}
  */
-export function clone(proto, name) {
+export function clone(proto) {
 
     return Object.getOwnPropertyNames(proto).reduce((xs, name) => {
         return { ...xs, [name]: proto[name] };
@@ -40,7 +39,7 @@ export function clone(proto, name) {
  */
 export function patch(proto, name, fn) {
 
-    const supported = ['push'];
+    const supported = ['push', 'slice', 'splice'];
 
     if (!supported.includes(name)) {
         return;
