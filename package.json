@@ -2,7 +2,7 @@
   "name": "moggy",
   "version": "0.1.0",
   "description": "Presenting a foolish implementation of immutability that aspires to ignore the most cherished taboo of not modifying prototypes for unspecified reasons.",
-  "main": "src/moggy.js",
+  "main": "src/apply.js",
   "scripts": {
     "test": "ava"
   },
@@ -25,5 +25,20 @@
   "bugs": {
     "url": "https://github.com/Wildhoney/Transmogrify/issues"
   },
-  "homepage": "https://github.com/Wildhoney/Transmogrify#readme"
+  "homepage": "https://github.com/Wildhoney/Transmogrify#readme",
+  "ava": {
+    "files": [
+      "tests/*.test.js"
+    ],
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-3": "^6.22.0",
+    "babel-register": "^6.22.0"
+  }
 }
