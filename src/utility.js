@@ -26,9 +26,14 @@ export function isFunction(x) {
  */
 export function patch(proto, name, fn) {
 
-    proto[name] = function(...args) {
-        return fn(this, ...args);
-    };
+    Object.defineProperty(proto, name, {
+        value: function(...args) {
+            return fn(this, ...args);
+        },
+        configurable: false,
+        writable: false,
+        enumerable: false
+    })
 
 }
 
@@ -56,7 +61,7 @@ export function extend(value) {
     const type  = typeOf(value);
     const proto = type['prototype'];
 
-    return new class extends type {
+    return new class extends Object.getPrototypeOf(value).constructor {
 
         /**
          * @constructor

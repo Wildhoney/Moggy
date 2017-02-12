@@ -12,6 +12,8 @@ import m from 'moggy';
 const a = m([1, 2, 3]);
 const b = a.push(4); // [sideEffect = [1, 2, 3, 4], returnValue = 4]
 const c = a.pop(); // [sideEffect = [1, 2], returnValue = 3]
+
+console.log(a); // [1, 2, 3]
 ```
 
 In such cases it's not always obvious which value you may require &ndash; that's why Moggy returns both. In the case of `push` you're more likely to `sideEffect`, however in `pop` you're more likely to require the `returnValue`.
@@ -24,4 +26,6 @@ import m from 'moggy';
 const a = m([1, 2, 3]);
 const [b] = a.push(4); // [1, 2, 3, 4]
 const [, c] = a.pop(); // [1, 2]
+
+console.log(a); // [1, 2, 3]
 ```
