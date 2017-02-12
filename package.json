@@ -1,7 +1,7 @@
 {
   "name": "moggy",
   "version": "0.1.0",
-  "description": "Presenting a foolish implementation of immutability that aspires to ignore the most cherished taboo of not modifying prototypes for unspecified reasons.",
+  "description": "Miniature ~2kb library that brings immutability to existing prototype functions employing the principle of least astonishment.",
   "main": "dist/moggy.js",
   "scripts": {
     "build": "webpack -p && gzip < dist/moggy.js > dist/moggy.js.gz",
