@@ -61,38 +61,29 @@ export function extend(value) {
     const type  = typeOf(value);
     const proto = type['prototype'];
 
-    return new class extends Object.getPrototypeOf(value).constructor {
+    class Immutable extends Array {}
 
-        /**
-         * @constructor
-         */
-        constructor() {
+    each(proto, name => isFunction(proto[name]) && patch(Immutable.prototype, name, (context, ...args) => {
 
-            super(...value);
+        // Make a copy of the object before making it immutable.
+        const extensibleContext = [...context];
 
-            each(proto, name => isFunction(proto[name]) && patch(this, name, (context, ...args) => {
+        try {
 
-                // Make a copy of the object before making it immutable.
-                const extensibleContext = [...context];
+            // Attempt to apply a function which we'll assume doesn't have any side-effects.
+            return proto[name].apply(Object.freeze(context), args);
 
-                try {
+        } catch (e) {
 
-                    // Attempt to apply a function which we'll assume doesn't have any side-effects.
-                    return proto[name].apply(Object.freeze(context), args);
-
-                } catch (e) {
-
-                    // However if the function did in fact attempt to mutate the frozen object, then we'll
-                    // handle that gracefully, and return a tuple of the result and its side-effect.
-                    const result = proto[name].apply(extensibleContext, args);
-                    return Object.freeze([extensibleContext, result]);
-
-                }
-
-            }));
+            // However if the function did in fact attempt to mutate the frozen object, then we'll
+            // handle that gracefully, and return a tuple of the result and its side-effect.
+            const result = proto[name].apply(extensibleContext, args);
+            return Object.freeze([extensibleContext, result]);
 
         }
 
-    };
+    }));
+
+    return Object.freeze(Array.isArray(value) ? new Immutable(...value) : new Immutable(value));
 
 }

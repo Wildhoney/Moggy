@@ -1,1 +1,167 @@
-module.exports=function(t){function e(n){if(r[n])return r[n].exports;var o=r[n]={exports:{},id:n,loaded:!1};return t[n].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var r={};return e.m=t,e.c=r,e.p="",e(0)}([function(t,e,r){"use strict";function n(t){return(0,o.extend)(t)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=n;var o=r(1)},function(t,e){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,r=Array(t.length);e<t.length;e++)r[e]=t[e];return r}return Array.from(t)}function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function c(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function u(t,e){Object.getOwnPropertyNames(t).forEach(e)}function f(t){return"function"==typeof t}function i(t,e,r){t[e]=function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];return r.apply(void 0,[this].concat(e))}}function a(t){switch(!0){case Array.isArray(t):return Array;case"object"===("undefined"==typeof t?"undefined":y(t)):return Object}}function p(t){var e=a(t),p=e.prototype;return new(function(e){function a(){var e;n(this,a);var c=o(this,(e=a.__proto__||Object.getPrototypeOf(a)).call.apply(e,[this].concat(r(t))));return u(p,function(t){return f(p[t])&&i(c,t,function(e){for(var n=arguments.length,o=Array(n>1?n-1:0),c=1;c<n;c++)o[c-1]=arguments[c];var u=[].concat(r(e));try{return p[t].apply(Object.freeze(e),o)}catch(e){var f=p[t].apply(u,o);return Object.freeze([u,f])}})}),c}return c(a,e),a}(e))}Object.defineProperty(e,"__esModule",{value:!0});var y="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};e.each=u,e.isFunction=f,e.patch=i,e.typeOf=a,e.extend=p}]);
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = moggy;
+	
+	var _utility = __webpack_require__(1);
+	
+	/**
+	 * @method apply
+	 * @param {Object|Array} value
+	 * @return {Object}
+	 */
+	function moggy(value) {
+	  return (0, _utility.extend)(value);
+	}
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.each = each;
+	exports.isFunction = isFunction;
+	exports.patch = patch;
+	exports.typeOf = typeOf;
+	exports.extend = extend;
+	/**
+	 * @method each
+	 * @param {Object} proto
+	 * @param {Function} fn
+	 * @return {void}
+	 */
+	function each(proto, fn) {
+	    Object.getOwnPropertyNames(proto).forEach(fn);
+	}
+	
+	/**
+	 * @method isFunction
+	 * @param {*} x
+	 * @return {Boolean}
+	 */
+	function isFunction(x) {
+	    return typeof x === 'function';
+	}
+	
+	/**
+	 * @method patch
+	 * @param {Object} proto
+	 * @param {String} name
+	 * @param {Function} fn
+	 * @return {*}
+	 */
+	function patch(proto, name, fn) {
+	
+	    Object.defineProperty(proto, name, {
+	        value: function (...args) {
+	            return fn(this, ...args);
+	        },
+	        configurable: false,
+	        writable: false,
+	        enumerable: false
+	    });
+	}
+	
+	/**
+	 * @method typeOf
+	 * @param {*} value
+	 * @return {Object}
+	 */
+	function typeOf(value) {
+	
+	    switch (true) {
+	        case Array.isArray(value):
+	            return Array;
+	        case typeof value === 'object':
+	            return Object;
+	    }
+	}
+	
+	/**
+	 * @method extend
+	 * @param {*} value
+	 * @return {Object}
+	 */
+	function extend(value) {
+	
+	    const type = typeOf(value);
+	    const proto = type['prototype'];
+	
+	    class Immutable extends Array {}
+	
+	    each(proto, name => isFunction(proto[name]) && patch(Immutable.prototype, name, (context, ...args) => {
+	
+	        // Make a copy of the object before making it immutable.
+	        const extensibleContext = [...context];
+	
+	        try {
+	
+	            // Attempt to apply a function which we'll assume doesn't have any side-effects.
+	            return proto[name].apply(Object.freeze(context), args);
+	        } catch (e) {
+	
+	            // However if the function did in fact attempt to mutate the frozen object, then we'll
+	            // handle that gracefully, and return a tuple of the result and its side-effect.
+	            const result = proto[name].apply(extensibleContext, args);
+	            return Object.freeze([extensibleContext, result]);
+	        }
+	    }));
+	
+	    return Object.freeze(Array.isArray(value) ? new Immutable(...value) : new Immutable(value));
+	}
+
+/***/ }
+/******/ ]);
