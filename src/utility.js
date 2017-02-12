@@ -33,7 +33,7 @@ export function patch(proto, name, fn) {
         configurable: false,
         writable: false,
         enumerable: false
-    })
+    });
 
 }
 
