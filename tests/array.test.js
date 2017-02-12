@@ -22,6 +22,13 @@ test('Array.prototype.push', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.unshift', t => {
+    const a = m([2, 3]);
+    t.deepEqual(a.unshift(1), [[1, 2, 3], 3]);
+    t.deepEqual(a.unshift([0, 1]), [[[0, 1], 2, 3], 3]);
+    t.deepEqual(a, [2, 3]);
+});
+
 test('Array.prototype.slice', t => {
     const a = m([1, 2, 3, 4, 5]);
     t.deepEqual(a.slice(1), [2, 3, 4, 5]);

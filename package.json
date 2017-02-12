@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Wildhoney/Transmogrify.git"
+    "url": "git+https://github.com/Wildhoney/Moggy.git"
   },
   "keywords": [
     "immutable",
@@ -25,9 +25,9 @@
   "author": "Adam Timberlake <adam.timberlake@gmail.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Wildhoney/Transmogrify/issues"
+    "url": "https://github.com/Wildhoney/Moggy/issues"
   },
-  "homepage": "https://github.com/Wildhoney/Transmogrify#readme",
+  "homepage": "https://github.com/Wildhoney/Moggy#readme",
   "ava": {
     "files": [
       "tests/*.test.js"
