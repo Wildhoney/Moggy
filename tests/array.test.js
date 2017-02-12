@@ -35,6 +35,12 @@ test('Array.prototype.reverse', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.sort', t => {
+    const a = m([3, 2, 1]);
+    t.deepEqual(a.sort((a, b) => a > b), [[1, 2, 3], [1, 2, 3]]);
+    t.deepEqual(a, [3, 2, 1]);
+});
+
 test('Array.prototype.slice', t => {
     const a = m([1, 2, 3, 4, 5]);
     t.deepEqual(a.slice(1), [2, 3, 4, 5]);
