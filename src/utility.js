@@ -26,7 +26,7 @@ export function isFunction(x) {
  */
 export function patch(proto, name, fn) {
 
-    const supported = ['concat', 'push', 'slice', 'splice', 'pop', 'shift'];
+    const supported = ['concat', 'copyWithin', 'push', 'slice', 'splice', 'pop', 'shift'];
 
     if (!supported.includes(name)) {
         return;

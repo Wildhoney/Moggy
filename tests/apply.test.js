@@ -9,6 +9,12 @@ test('Array.prototype.concat', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.copyWithin', t => {
+    const a = m([1, 2, 3, 4, 5, 6]);
+    t.deepEqual(a.copyWithin(2, 1, 4), [[1, 2, 2, 3, 4, 6], [1, 2, 2, 3, 4, 6]]);
+    t.deepEqual(a, [1, 2, 3, 4, 5, 6]);
+});
+
 test('Array.prototype.push', t => {
     const a = m([1, 2, 3]);
     t.deepEqual(a.push(4), [[1, 2, 3, 4], 4]);
