@@ -1,6 +1,14 @@
 import test from 'ava';
 import m from '../src/default';
 
+test('Array.prototype.concat', t => {
+    const a = m([1, 2, 3]);
+    const b = m([4, 5, 6]);
+    const c = a.concat(b);
+    t.deepEqual(a.concat(b), [1, 2, 3, 4, 5, 6]);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
 test('Array.prototype.push', t => {
     const a = m([1, 2, 3]);
     t.deepEqual(a.push(4), [[1, 2, 3, 4], 4]);
