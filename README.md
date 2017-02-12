@@ -1,13 +1,4 @@
 <img src="media/logo.png" alt="Transmogrify" width="250" />
 
-> Presenting a foolish implementation of immutability that aspires to ignore the most cherished taboo of not modifying prototypes for unspecified reasons.
+> ~2kb library obeying the [principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) that applies Object.freeze to all objects, but still allows native Array/Object functions to operate in an immutable fashion.
 
-## Rules
-
-> Even war has rules.
-
-When the type is an `array`:
-
-* Function hasn't mutated original then return, otherwise:
-  * If function returns a non-array, concatenate with original;
-  * If function returns an array, spread with the original;
