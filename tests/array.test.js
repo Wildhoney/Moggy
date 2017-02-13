@@ -34,6 +34,12 @@ test('Array.prototype.entries', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.keys', t => {
+    const a = m([1, 2, 3]);
+    t.deepEqual(Array.from(a.keys()), [0, 1, 2]);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
 test('Array.prototype.some', t => {
     const a = m([1, 2, 3]);
     t.deepEqual(a.some(b => b === 3), true);
