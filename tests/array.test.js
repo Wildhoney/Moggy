@@ -9,6 +9,11 @@ test('Unable to mutate object', t => {
     t.is(error.message, `Can't add property 2, object is not extensible`);
 });
 
+test('Able to calculate its length;', t => {
+    const a = m([1, 2, 3]);
+    t.is(a.length, 3);
+});
+
 test('Array.prototype.concat', t => {
     const a = m([1, 2, 3]);
     const b = m([4, 5, 6]);
