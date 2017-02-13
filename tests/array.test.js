@@ -52,6 +52,12 @@ test('Array.prototype.indexOf', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.lastIndexOf', t => {
+    const a = m([1, 2, 3, 4, 4, 4]);
+    t.deepEqual(a.lastIndexOf(4), 5);
+    t.deepEqual(a, [1, 2, 3, 4, 4, 4]);
+});
+
 test('Array.prototype.entries', t => {
     const a = m([1, 2, 3]);
     t.deepEqual(Array.from(a.entries()), [[0, 1], [1, 2], [2, 3]]);
