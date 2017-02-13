@@ -28,6 +28,12 @@ test('Array.prototype.every', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.entries', t => {
+    const a = m([1, 2, 3]);
+    t.deepEqual(Array.from(a.entries()), [[0, 1], [1, 2], [2, 3]]);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
 test('Array.prototype.some', t => {
     const a = m([1, 2, 3]);
     t.deepEqual(a.some(b => b === 3), true);
