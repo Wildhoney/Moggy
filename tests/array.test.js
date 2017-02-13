@@ -24,7 +24,13 @@ test('Array.prototype.concat', t => {
 
 test('Array.prototype.every', t => {
     const a = m([1, 2, 3]);
-    t.deepEqual(a.every(b => typeof b === 'number'), true);
+    t.is(a.every(b => typeof b === 'number'), true);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
+test('Array.prototype.find', t => {
+    const a = m([1, 2, 3]);
+    t.is(a.find(b => b === 2), 2);
     t.deepEqual(a, [1, 2, 3]);
 });
 
