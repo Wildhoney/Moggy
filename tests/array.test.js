@@ -23,6 +23,12 @@ test('Array.prototype.every', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.some', t => {
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.some(b => b === 3), true);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
 test('Array.prototype.copyWithin', t => {
     const a = m([1, 2, 3, 4, 5, 6]);
     t.deepEqual(a.copyWithin(2, 1, 4), [[1, 2, 2, 3, 4, 6], [1, 2, 2, 3, 4, 6]]);
