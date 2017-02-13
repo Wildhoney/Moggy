@@ -1,11 +1,25 @@
 import test from 'ava';
 import m from '../src/default';
 
+test('Unable to mutate object', t => {
+    const a = m(['Adam', 31]);
+    const error = t.throws(() => {
+        a[2] = 'London';
+    }, Error);
+    t.is(error.message, `Can't add property 2, object is not extensible`);
+});
+
 test('Array.prototype.concat', t => {
     const a = m([1, 2, 3]);
     const b = m([4, 5, 6]);
     const c = a.concat(b);
     t.deepEqual(a.concat(b), [1, 2, 3, 4, 5, 6]);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
+test('Array.prototype.every', t => {
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.every(b => typeof b === 'number'), true);
     t.deepEqual(a, [1, 2, 3]);
 });
 

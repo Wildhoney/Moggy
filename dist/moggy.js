@@ -106,12 +106,12 @@ module.exports =
 	function patch(proto, name, fn) {
 	
 	    Object.defineProperty(proto, name, {
-	        value: function (...args) {
-	            return fn(this, ...args);
-	        },
 	        configurable: false,
 	        writable: false,
-	        enumerable: false
+	        enumerable: false,
+	        value: function (...args) {
+	            return fn(this, ...args);
+	        }
 	    });
 	}
 	
