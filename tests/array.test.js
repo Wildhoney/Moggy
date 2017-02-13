@@ -46,6 +46,12 @@ test('Array.prototype.fill', t => {
     t.deepEqual(a, [1, 2, 3]);
 });
 
+test('Array.prototype.indexOf', t => {
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.indexOf(3), 2);
+    t.deepEqual(a, [1, 2, 3]);
+});
+
 test('Array.prototype.entries', t => {
     const a = m([1, 2, 3]);
     t.deepEqual(Array.from(a.entries()), [[0, 1], [1, 2], [2, 3]]);
