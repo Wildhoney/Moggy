@@ -16,7 +16,7 @@ const c = a.pop(); // [sideEffect = [1, 2], returnValue = 3]
 console.log(a); // [1, 2, 3]
 ```
 
-In such cases it's not always obvious which value you may require &ndash; that's why Moggy returns both. In the case of `push` you're more likely to `sideEffect`, however in `pop` you're more likely to require the `returnValue`.
+In such cases it's not always obvious which value you may require &ndash; that's why Moggy returns both as a tuple. In the case of `push` you're more likely to require `sideEffect`, however in `pop` you're more likely to require the `returnValue`.
 
 Using destructuring it's easy to take what you need &ndash; ignoring what you don't need.
 
