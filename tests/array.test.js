@@ -174,7 +174,8 @@ test('Array.prototype.splice', t => {
 });
 
 test('Array.prototype.toLocaleString', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    t.is(a.toLocaleString(), '1,2,3');
 });
 
 test('Array.prototype.toString', t => {
