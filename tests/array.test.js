@@ -14,6 +14,11 @@ test('Able to calculate its length;', t => {
     t.is(a.length, 3);
 });
 
+test('Array.prototype.toString', t => {
+    const a = m([1, 2, 3]);
+    t.is(a.toString(), '1,2,3');
+});
+
 test('Array.prototype.concat', t => {
     const a = m([1, 2, 3]);
     const b = m([4, 5, 6]);
