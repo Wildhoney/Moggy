@@ -122,18 +122,18 @@ module.exports =
 	function extend(value) {
 	
 	    /**
-	     * @constant proto
+	     * @constant prototype
 	     * @type {Object}
 	     */
-	    const proto = value.constructor['prototype'];
+	    const { prototype } = value.constructor;
 	
 	    /**
 	     * @class Immutable
-	     * @extends {Array|Object|Map|WeakMap|Set|WeakSet} value.constructor
+	     * @extends {Function} value.constructor
 	     */
 	    class Immutable extends value.constructor {}
 	
-	    each(proto, name => isFunction(proto[name]) && patch(Immutable.prototype, name, (context, ...args) => {
+	    each(prototype, name => isFunction(prototype[name]) && patch(Immutable.prototype, name, (context, ...args) => {
 	
 	        // Make a copy of the object before making it immutable.
 	        const extensibleContext = [...context];
@@ -141,12 +141,12 @@ module.exports =
 	        try {
 	
 	            // Attempt to apply a function which we'll assume doesn't have any side-effects.
-	            return proto[name].apply(Object.freeze(context), args);
+	            return prototype[name].apply(Object.freeze(context), args);
 	        } catch (e) {
 	
 	            // However if the function did in fact attempt to mutate the frozen object, then we'll
 	            // handle that gracefully, and return a tuple of the result and its side-effect.
-	            const result = proto[name].apply(extensibleContext, args);
+	            const result = prototype[name].apply(extensibleContext, args);
 	            return Object.freeze([extensibleContext, result]);
 	        }
 	    }));
