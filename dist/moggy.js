@@ -141,7 +141,7 @@ module.exports =
 	        try {
 	
 	            // Attempt to apply a function which we'll assume doesn't have any side-effects.
-	            return prototype[name].apply(Object.freeze(context), args);
+	            return prototype[name].apply(context, args);
 	        } catch (e) {
 	
 	            // However if the function did in fact attempt to mutate the frozen object, then we'll

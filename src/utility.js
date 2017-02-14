@@ -64,7 +64,7 @@ export function extend(value) {
         try {
 
             // Attempt to apply a function which we'll assume doesn't have any side-effects.
-            return prototype[name].apply(Object.freeze(context), args);
+            return prototype[name].apply(context, args);
 
         } catch (e) {
 
