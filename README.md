@@ -1,5 +1,7 @@
 <img src="media/logo.png" alt="Transmogrify" width="350" />
 
+---
+
 > <sub><sup>*moggy → transmogrify → "transform in a surprising or magical manner"*</sup></sub><br />
 > Miniature ~2kb library that brings immutability to existing prototype functions employing the [principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
 
