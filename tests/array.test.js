@@ -87,7 +87,9 @@ test('Array.prototype.indexOf', t => {
 });
 
 test('Array.prototype.join', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.join(' - '), '1 - 2 - 3');
+    t.deepEqual(a, [1, 2, 3]);
 });
 
 test('Array.prototype.keys', t => {
