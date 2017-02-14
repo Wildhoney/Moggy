@@ -130,7 +130,9 @@ test('Array.prototype.reduce', t => {
 });
 
 test('Array.prototype.reduceRight', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.reduceRight((acc, b) => [ ...acc, b * 2 ], []), [6, 4, 2]);
+    t.deepEqual(a, [1, 2, 3]);
 });
 
 test('Array.prototype.reverse', t => {
