@@ -105,7 +105,9 @@ test('Array.prototype.lastIndexOf', t => {
 });
 
 test('Array.prototype.map', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.map(b => b + 1), [2, 3, 4]);
+    t.deepEqual(a, [1, 2, 3]);
 });
 
 test('Array.prototype.pop', t => {
