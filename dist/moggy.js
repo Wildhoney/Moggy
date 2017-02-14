@@ -75,7 +75,6 @@ module.exports =
 	exports.each = each;
 	exports.isFunction = isFunction;
 	exports.patch = patch;
-	exports.typeOf = typeOf;
 	exports.extend = extend;
 	/**
 	 * @method each
@@ -116,31 +115,23 @@ module.exports =
 	}
 	
 	/**
-	 * @method typeOf
-	 * @param {*} value
-	 * @return {Object}
-	 */
-	function typeOf(value) {
-	
-	    switch (true) {
-	        case Array.isArray(value):
-	            return Array;
-	        case typeof value === 'object':
-	            return Object;
-	    }
-	}
-	
-	/**
 	 * @method extend
 	 * @param {*} value
 	 * @return {Object}
 	 */
 	function extend(value) {
 	
-	    const type = typeOf(value);
-	    const proto = type['prototype'];
+	    /**
+	     * @constant proto
+	     * @type {Object}
+	     */
+	    const proto = value.constructor['prototype'];
 	
-	    class Immutable extends Array {}
+	    /**
+	     * @class Immutable
+	     * @extends {Array|Object|Map|WeakMap|Set|WeakSet} value.constructor
+	     */
+	    class Immutable extends value.constructor {}
 	
 	    each(proto, name => isFunction(proto[name]) && patch(Immutable.prototype, name, (context, ...args) => {
 	
