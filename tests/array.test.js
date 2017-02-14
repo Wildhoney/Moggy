@@ -74,7 +74,10 @@ test('Array.prototype.forEach', t => {
 });
 
 test('Array.prototype.includes', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.includes(2), true);
+    t.deepEqual(a.includes(4), false);
+    t.deepEqual(a, [1, 2, 3]);
 });
 
 test('Array.prototype.indexOf', t => {
