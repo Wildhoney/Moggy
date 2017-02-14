@@ -1,4 +1,4 @@
-<img src="media/logo.png" alt="Transmogrify" width="350" />
+![Moggy](media/logo.png)
 
 ---
 
