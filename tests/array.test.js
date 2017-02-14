@@ -1,4 +1,5 @@
 import test from 'ava';
+import { spy } from 'sinon';
 import m from '../src/default';
 
 test('Unable to mutate object', t => {
@@ -65,7 +66,11 @@ test('Array.prototype.findIndex', t => {
 });
 
 test('Array.prototype.forEach', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    const f = spy();
+    a.forEach(f);
+    t.is(f.callCount, 3);
+    t.deepEqual(a, [1, 2, 3]);
 });
 
 test('Array.prototype.includes', t => {
