@@ -47,7 +47,9 @@ test('Array.prototype.fill', t => {
 });
 
 test('Array.prototype.filter', t => {
-    t.pass();
+    const a = m([1, 2, 3, 4, 5]);
+    t.deepEqual(a.filter(b => b > 2), [3, 4, 5]);
+    t.deepEqual(a, [1, 2, 3, 4, 5]);
 });
 
 test('Array.prototype.find', t => {
