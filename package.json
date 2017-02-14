@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p && gzip < dist/moggy.js > dist/moggy.js.gz",
     "test": "npm run build && ava && npm run size",
-    "size": "fslint --files=dist/moggy.js.gz --limit=2048"
+    "size": "fslint --files=dist/moggy.js.gz --limit=1536"
   },
   "repository": {
     "type": "git",

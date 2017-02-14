@@ -10,11 +10,11 @@ export function each(proto, fn) {
 
 /**
  * @method isFunction
- * @param {*} x
+ * @param {*} a
  * @return {Boolean}
  */
-export function isFunction(x) {
-    return typeof x === 'function';
+export function isFunction(a) {
+    return typeof a === 'function';
 }
 
 /**
@@ -27,12 +27,34 @@ export function isFunction(x) {
 export function patch(proto, name, fn) {
 
     Object.defineProperty(proto, name, {
+
+        /**
+         * @constant configurable
+         * @type {Boolean}
+         */
         configurable: false,
+
+        /**
+         * @constant writable
+         * @type {Boolean}
+         */
         writable: false,
+
+        /**
+         * @constant enumerable
+         * @type {Boolean}
+         */
         enumerable: false,
+
+        /**
+         * @method value
+         * @param {*} args
+         * @return {*}
+         */
         value: function(...args) {
             return fn(this, ...args);
         }
+
     });
 
 }
@@ -58,7 +80,7 @@ export function extend(value) {
 
     each(prototype, name => isFunction(prototype[name]) && patch(Immutable.prototype, name, (context, ...args) => {
 
-        // Make a copy of the object before making it immutable.
+        // Make a copy of the object which removes the immutability.
         const extensibleContext = [...context];
 
         try {
