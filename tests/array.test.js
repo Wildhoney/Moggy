@@ -124,7 +124,9 @@ test('Array.prototype.push', t => {
 });
 
 test('Array.prototype.reduce', t => {
-    t.pass();
+    const a = m([1, 2, 3]);
+    t.deepEqual(a.reduce((acc, b) => [ ...acc, b * 2 ], []), [2, 4, 6]);
+    t.deepEqual(a, [1, 2, 3]);
 });
 
 test('Array.prototype.reduceRight', t => {
