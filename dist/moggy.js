@@ -70,7 +70,7 @@ module.exports =
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.each = each;
 	exports.isFunction = isFunction;
@@ -83,16 +83,16 @@ module.exports =
 	 * @return {void}
 	 */
 	function each(proto, fn) {
-	    Object.getOwnPropertyNames(proto).forEach(fn);
+	  Object.getOwnPropertyNames(proto).forEach(fn);
 	}
 	
 	/**
 	 * @method isFunction
-	 * @param {*} x
+	 * @param {*} a
 	 * @return {Boolean}
 	 */
-	function isFunction(x) {
-	    return typeof x === 'function';
+	function isFunction(a) {
+	  return typeof a === 'function';
 	}
 	
 	/**
@@ -104,14 +104,36 @@ module.exports =
 	 */
 	function patch(proto, name, fn) {
 	
-	    Object.defineProperty(proto, name, {
-	        configurable: false,
-	        writable: false,
-	        enumerable: false,
-	        value: function (...args) {
-	            return fn(this, ...args);
-	        }
-	    });
+	  Object.defineProperty(proto, name, {
+	
+	    /**
+	     * @constant configurable
+	     * @type {Boolean}
+	     */
+	    configurable: false,
+	
+	    /**
+	     * @constant writable
+	     * @type {Boolean}
+	     */
+	    writable: false,
+	
+	    /**
+	     * @constant enumerable
+	     * @type {Boolean}
+	     */
+	    enumerable: false,
+	
+	    /**
+	     * @method value
+	     * @param {*} args
+	     * @return {*}
+	     */
+	    value: function (...args) {
+	      return fn(this, ...args);
+	    }
+	
+	  });
 	}
 	
 	/**
@@ -121,37 +143,37 @@ module.exports =
 	 */
 	function extend(value) {
 	
-	    /**
-	     * @constant prototype
-	     * @type {Object}
-	     */
-	    const { prototype } = value.constructor;
+	  /**
+	   * @constant prototype
+	   * @type {Object}
+	   */
+	  const { prototype } = value.constructor;
 	
-	    /**
-	     * @class Immutable
-	     * @extends {Function} value.constructor
-	     */
-	    class Immutable extends value.constructor {}
+	  /**
+	   * @class Immutable
+	   * @extends {Function} value.constructor
+	   */
+	  class Immutable extends value.constructor {}
 	
-	    each(prototype, name => isFunction(prototype[name]) && patch(Immutable.prototype, name, (context, ...args) => {
+	  each(prototype, name => isFunction(prototype[name]) && patch(Immutable.prototype, name, (context, ...args) => {
 	
-	        // Make a copy of the object before making it immutable.
-	        const extensibleContext = [...context];
+	    // Make a copy of the object which removes the immutability.
+	    const extensibleContext = [...context];
 	
-	        try {
+	    try {
 	
-	            // Attempt to apply a function which we'll assume doesn't have any side-effects.
-	            return prototype[name].apply(context, args);
-	        } catch (e) {
+	      // Attempt to apply a function which we'll assume doesn't have any side-effects.
+	      return prototype[name].apply(context, args);
+	    } catch (e) {
 	
-	            // However if the function did in fact attempt to mutate the frozen object, then we'll
-	            // handle that gracefully, and return a tuple of the result and its side-effect.
-	            const result = prototype[name].apply(extensibleContext, args);
-	            return Object.freeze([extensibleContext, result]);
-	        }
-	    }));
+	      // However if the function did in fact attempt to mutate the frozen object, then we'll
+	      // handle that gracefully, and return a tuple of the result and its side-effect.
+	      const result = prototype[name].apply(extensibleContext, args);
+	      return Object.freeze([extensibleContext, result]);
+	    }
+	  }));
 	
-	    return Object.freeze(Array.isArray(value) ? new Immutable(...value) : new Immutable(value));
+	  return Object.freeze(Array.isArray(value) ? new Immutable(...value) : new Immutable(value));
 	}
 
 /***/ }
