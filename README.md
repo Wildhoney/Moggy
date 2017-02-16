@@ -3,6 +3,9 @@
 > <sub><sup>*moggy → transmogrify → "transform in a surprising or magical manner."*</sup></sub><br />
 > Miniature ~2kb library that brings immutability to existing prototype functions employing the [principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment).
 
+[![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+
 ## Getting Started
 
 Moggy inspects the `prototype` of the value and creates an `object` that takes the functions from the prototype &ndash; it's therefore not easy to say *which* functions Moggy implements, since ECMAScript functions that mutate the value will respond with a tuple of `[sideEffect, returnValue]`, whereas functions that are already immutable in their nature will respond as-is.
