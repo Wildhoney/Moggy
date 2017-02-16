@@ -4,7 +4,7 @@
   "description": "Miniature ~2kb library that brings immutability to existing prototype functions employing the principle of least astonishment.",
   "main": "dist/moggy.js",
   "scripts": {
-    "build": "webpack -p && gzip < dist/moggy.js > dist/moggy.js.gz",
+    "build": "webpack && gzip < dist/moggy.js > dist/moggy.js.gz",
     "test": "npm run build && ava && npm run size",
     "size": "fslint --files=dist/moggy.js.gz --limit=1536"
   },
